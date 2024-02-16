@@ -38,7 +38,7 @@ const App = () => {
   const handleDelete = (id) => {
     const newExpense = expenses.filter((expense) => expense.id !== id)
     setExpenses(newExpense)
-    handleAlert({ type: 'danger', text: '아이템이 삭제되었습니다' })
+    handleAlert({ type: 'danger', text: '아이d템이 일단 삭제되었습니다' })
   }
 
   const handleSubmit = (e) => {
