@@ -3,7 +3,7 @@
   line-height: 1.5rem;
   padding: 10px 20px;
   margin-bottom: 1rem;
-  border: solid 1px #e0e0e0;
+  border: 1px solid #e0e0e0;
   display: flex;
   justify-content: space-between;
   transition: all 0.3s linear;
@@ -25,7 +25,7 @@
 }
 .clear-btn,
 .edit-btn {
-  background-color: transparent;
+  background: none;
   border: none;
   font-size: 1.2rem;
   outline: none;

@@ -1,10 +1,9 @@
 import React from 'react'
 import './ExpenseForm.css'
-import { hasFormSubmit } from '@testing-library/user-event/dist/utils'
 
-const ExpenseForm = (charge, handleCharge, amount, handleAmount) => {
+const ExpenseForm = ({ charge, handleCharge, amount, handleAmount, handleSubmit }) => {
   return (
-    <form onSubmit={hasFormSubmit}>
+    <form onSubmit={handleSubmit}>
       <div className="form-center">
         <div className="form-group">
           <label htmlFor="charge">상품</label>
@@ -25,17 +24,16 @@ const ExpenseForm = (charge, handleCharge, amount, handleAmount) => {
             className="form-control"
             id="amount"
             name="amount"
+            placeholder="예) 100"
             value={amount}
             onChange={handleAmount}
-            placeholder="예) 100"
           />
         </div>
       </div>
-      <button className="btn" type="submit">
+      <button type="submit" className="btn">
         제출
       </button>
     </form>
   )
 }
-
 export default ExpenseForm

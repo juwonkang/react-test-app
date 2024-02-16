@@ -1,11 +1,11 @@
-.main_container {
+.main-container {
   width: 100vw;
   height: 100vh;
   display: grid;
   place-items: center;
 }
 
-.sub_conatainer {
+.sub-container {
   margin: 0 auto;
   max-width: 1280px;
   width: 90%;

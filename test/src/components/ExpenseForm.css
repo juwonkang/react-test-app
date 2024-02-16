@@ -8,12 +8,13 @@
 label {
   display: block;
   color: var(--secondColor);
+  font-size: 1rem;
   text-transform: capitalize;
 }
 .form-control {
   background-color: transparent;
   border: none;
-  border-bottom: solid 1px var(--secondColor);
+  border-bottom: 1px solid var(--secondColor);
   outline: none;
   height: 3rem;
   width: 100%;
