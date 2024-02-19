@@ -11,6 +11,11 @@ const App = () => {
     { id: 3, charge: '맥북', amount: 5000 },
   ])
 
+  // const [test1, test2] = useState([
+  //   { id: 1, charge: '렌트비' },
+  //   { id: 2, charge: '차종이름' },
+  // ])
+
   const [charge, setCharge] = useState('')
   const [amount, setAmount] = useState(0)
   const [edit, setEdit] = useState(false)
@@ -20,11 +25,11 @@ const App = () => {
 
   const handleEdit = (id) => {
     const expense = expenses.find((item) => item.id === id)
-    const { charge, amount } = expense
+    const { charge, amount } = expense //구조분해할당
     setCharge(charge)
     setAmount(amount)
-    setId(id)
     setEdit(true)
+    setId(id)
   }
 
   const handleCharge = (e) => {
@@ -44,13 +49,23 @@ const App = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     if (charge !== '' && amount > 0) {
-      const newExpense = { id: crypto.randomUUID(), charge, amount }
+      if (edit) {
+        const newExpenses = expenses.map((item) => {
+          return item.id === id ? { ...item, charge, amount } : item
+        })
+        setExpenses(newExpenses)
+        setEdit(false)
+        handleAlert({ type: 'success', text: '아이템이 수정되었습니다.' })
+      } else {
+        const newExpense = { id: crypto.randomUUID(), charge, amount }
 
-      const newExpenses = [...expenses, newExpense]
-      setExpenses(newExpenses)
+        const newExpenses = [...expenses, newExpense]
+        setExpenses(newExpenses)
+        handleAlert({ type: 'success', text: ' 아이탬이 생성되었습니다' })
+      }
+
       setCharge('')
       setAmount('')
-      handleAlert({ type: 'success', text: '아이탬이 생성되었습니다' })
     } else {
       console.error('error')
       handleAlert({
@@ -67,6 +82,10 @@ const App = () => {
     }, 7000)
   }
 
+  const clearItems = () => {
+    setExpenses([])
+  }
+
   return (
     <main className="main-container">
       <div className="sub-container">
@@ -75,6 +94,7 @@ const App = () => {
         <div style={{ width: '100%', backgroundColor: 'white', padding: '1rem' }}>
           {/*Expends form*/}
           <ExpenseForm
+            edit={edit}
             charge={charge}
             handleSubmit={handleSubmit}
             handleCharge={handleCharge}
@@ -89,6 +109,7 @@ const App = () => {
             handleEdit={handleEdit}
             initialExpenses={expenses}
             handleDelete={handleDelete}
+            clearItems={clearItems}
           />
         </div>
         <div style={{ display: 'flex', justifyContent: 'start', marginTop: '1rem' }}>

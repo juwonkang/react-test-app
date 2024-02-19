@@ -2,7 +2,7 @@ import React from 'react'
 import './ExpenseList.css'
 import ExpenseItem from './ExpenseItem'
 
-const ExpenseList = ({ initialExpenses, handleDelete, handleEdit }) => {
+const ExpenseList = ({ initialExpenses, handleDelete, handleEdit, clearItems }) => {
   return (
     <>
       <ul className="list">
@@ -17,7 +17,9 @@ const ExpenseList = ({ initialExpenses, handleDelete, handleEdit }) => {
           )
         })}
       </ul>
-      <button className="btn">목록 지우기</button>
+      <button className="btn" onClick={clearItems}>
+        목록 지우기
+      </button>
     </>
   )
 }
